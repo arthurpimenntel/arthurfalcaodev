@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="favicondef.png" />
+  <link rel="apple-touch-icon" href="favicondef.png" />
+  <meta name="theme-color" content="#060810" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Profissionais e empresas que levam sua imagem a sério merecem uma presença digital à altura — sites rápidos, modernos e construídos para transformar visitantes em clientes reais." />
+  <meta name="keywords" content="desenvolvedor web, freelancer, criação de sites, aplicativos mobile, UI/UX design, sistemas web" />
+  <meta name="author" content="Arthur Falcão Dev" />
+  <meta property="og:title" content="Arthur Falcão Dev — Desenvolvedor Web & Mobile" />
+  <meta property="og:description" content="Presença digital que representa o nível do seu negócio. Design premium, performance real e foco em resultado." />
+  <meta property="og:type" content="website" />
+  <title>Arthur Falcão Dev — Desenvolvedor Web & Mobile</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YV29PWVFXM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YV29PWVFXM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">ARTHUR FALCÃO <span>DEV</span></div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">ARTHUR FALCÃO <span>DEV</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">Por que funciona</a></li>
+        <li><a href="#services" class="nav-link">Serviços</a></li>
+        <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+        <li><a href="#contact" class="nav-link">Contato</a></li>
+        <li>
+          <a href="https://wa.me/5581998669437?text=Olá!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="btn btn-nav">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="badge-dot"></span>
+          Disponível para novos projetos
+        </div>
+        <h1 class="hero-title reveal">
+          <span class="title-line">Do clique ao cliente.</span>
+          <span class="title-line gradient-text">É isso que eu construo.</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+          Do design à performance, cada detalhe é pensado para que seu site seja sua melhor ferramenta de vendas — disponível 24h, todos os dias.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="https://wa.me/5581998669437?text=Olá!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="btn btn-primary">
+            <i class="fab fa-whatsapp"></i>
+            Solicitar Orçamento
+            <span class="btn-glow"></span>
+          </a>
+          <a href="#portfolio" class="btn btn-ghost">
+            Ver Projetos
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number" data-target="100">0</span><span>%</span>
+          <span class="stat-label">Satisfação garantida</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="devices-wrap">
+          <div class="code-window">
+            <div class="window-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="window-title">main.js</span>
+            </div>
+            <div class="code-content">
+              <div class="code-line"><span class="kw">const</span> <span class="var">projeto</span> <span class="op">=</span> <span class="fn">criarSite</span>({</div>
+              <div class="code-line indent"><span class="key">design</span><span class="op">:</span> <span class="str">"premium"</span>,</div>
+              <div class="code-line indent"><span class="key">velocidade</span><span class="op">:</span> <span class="str">"ultrarrápido"</span>,</div>
+              <div class="code-line indent"><span class="key">conversão</span><span class="op">:</span> <span class="num">true</span>,</div>
+              <div class="code-line indent"><span class="key">cliente</span><span class="op">:</span> <span class="str">"satisfeito"</span> <span class="comment">✓</span></div>
+              <div class="code-line">});</div>
+              <div class="code-line">&nbsp;</div>
+              <div class="code-line"><span class="fn">console</span>.<span class="fn">log</span>(<span class="var">projeto</span>.<span class="key">resultado</span>);</div>
+              <div class="code-line comment">// → "negócio transformado 🚀"</div>
+              <div class="code-cursor">|</div>
+            </div>
+          </div>
+          <div class="float-badge badge-top"><i class="fas fa-bolt"></i> Performance 100/100</div>
+          <div class="float-badge badge-bottom"><i class="fas fa-mobile-alt"></i> 100% Responsivo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrap reveal">
+          <div class="about-img-frame">
+            <img src="perfilfoto.jpeg" alt="Arthur Falcão Dev" class="about-photo" />
+            <div class="frame-corner tl"></div>
+            <div class="frame-corner tr"></div>
+            <div class="frame-corner bl"></div>
+            <div class="frame-corner br"></div>
+          </div>
+          <div class="about-tag"><i class="fas fa-code"></i> Full Stack Dev</div>
+        </div>
+        <div class="about-content">
+          <div class="section-label reveal">Por que funciona?</div>
+          <h2 class="section-title reveal">
+            Sua imagem digital fala muito<br />
+            antes de você <span class="gradient-text">dizer qualquer coisa.</span>
+          </h2>
+          <p class="about-text reveal">
+            Quando alguém pesquisa pelo seu serviço, a primeira impressão já aconteceu — e ela é digital. Uma presença online fraca ou inexistente pode custar muito mais do que qualquer investimento em marketing.
+          </p>
+          <p class="about-text reveal">
+            Crio sites e sistemas que representam o nível do seu trabalho: rápidos, profissionais e otimizados para aparecer no Google — para que sua presença online converta com a mesma qualidade que você entrega pessoalmente.
+          </p>
+          <div class="tech-stack reveal">
+            <span class="tech-tag">⚡ Sites ultrarrápidos</span>
+            <span class="tech-tag">📍 SEO local</span>
+            <span class="tech-tag">📱 100% responsivo</span>
+            <span class="tech-tag">🔒 Seguro & estável</span>
+            <span class="tech-tag">📊 Google Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Serviços</div>
+        <h2 class="section-title reveal">
+          O que posso criar<br />
+          <span class="gradient-text">para você</span>
+        </h2>
+        <p class="section-desc reveal">Soluções completas do zero à publicação, com suporte e qualidade garantida.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="card-icon"><i class="fas fa-globe"></i></div>
+          <h3>Criação de Sites</h3>
+          <p>Landing pages, sites institucionais, e-commerces com design premium e foco total em conversão.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Design exclusivo</li>
+            <li><i class="fas fa-check"></i> SEO otimizado</li>
+            <li><i class="fas fa-check"></i> Carregamento ultrarrápido</li>
+          </ul>
+          <a href="https://wa.me/5581998669437" target="_blank" class="card-link">Solicitar <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Apps Mobile</h3>
+          <p>Aplicativos iOS e Android com experiência nativa, performance elevada e interface intuitiva.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> iOS & Android</li>
+            <li><i class="fas fa-check"></i> UX estratégico</li>
+            <li><i class="fas fa-check"></i> Publicação nas stores</li>
+          </ul>
+          <a href="https://wa.me/5581998669437" target="_blank" class="card-link">Solicitar <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card card-featured reveal">
+          <div class="card-badge">Mais solicitado</div>
+          <div class="card-icon"><i class="fas fa-cogs"></i></div>
+          <h3>Sistemas Web</h3>
+          <p>Plataformas, dashboards, ERPs e sistemas customizados para automatizar e escalar seu negócio.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Painel administrativo</li>
+            <li><i class="fas fa-check"></i> Integrações API</li>
+            <li><i class="fas fa-check"></i> Escalável e seguro</li>
+          </ul>
+          <a href="https://wa.me/5581998669437" target="_blank" class="card-link">Solicitar <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>UI/UX Design</h3>
+          <p>Interfaces que encantam e facilitam a jornada do usuário — do wireframe ao produto final.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Figma & prototipagem</li>
+            <li><i class="fas fa-check"></i> Design system</li>
+            <li><i class="fas fa-check"></i> Testes de usabilidade</li>
+          </ul>
+          <a href="https://wa.me/5581998669437" target="_blank" class="card-link">Solicitar <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="differentials section">
+    <div class="container">
+      <div class="diff-wrapper">
+        <div class="diff-content">
+          <div class="section-label reveal">Por que me escolher</div>
+          <h2 class="section-title reveal">
+            Estratégia, design e performance<br />
+            <span class="gradient-text">em cada detalhe</span>
+          </h2>
+          <p class="section-desc reveal">Cada decisão de projeto é tomada pensando no resultado final do seu negócio.</p>
+        </div>
+        <div class="diff-list">
+          <div class="diff-item reveal">
+            <div class="diff-icon"><i class="fas fa-palette"></i></div>
+            <div class="diff-text"><h4>Design Moderno & Profissional</h4><p>Visual de agência premium sem pagar preço de agência.</p></div>
+          </div>
+          <div class="diff-item reveal">
+            <div class="diff-icon"><i class="fas fa-hand-pointer"></i></div>
+            <div class="diff-text"><h4>Experiência Intuitiva</h4><p>Interfaces que o usuário entende sem precisar de manual.</p></div>
+          </div>
+          <div class="diff-item reveal">
+            <div class="diff-icon"><i class="fas fa-tachometer-alt"></i></div>
+            <div class="diff-text"><h4>Sites Rápidos & Otimizados</h4><p>Performance que melhora seu ranqueamento no Google.</p></div>
+          </div>
+          <div class="diff-item reveal">
+            <div class="diff-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="diff-text"><h4>Foco em Conversão</h4><p>Cada elemento pensado para transformar visitante em cliente.</p></div>
+          </div>
+          <div class="diff-item reveal">
+            <div class="diff-icon"><i class="fas fa-headset"></i></div>
+            <div class="diff-text"><h4>Suporte Pós-Entrega</h4><p>Não desapareço depois de entregar. Estou sempre disponível.</p></div>
+          </div>
+          <div class="diff-item reveal">
+            <div class="diff-icon"><i class="fas fa-clock"></i></div>
+            <div class="diff-text"><h4>Prazo Cumprido</h4><p>Entrego no prazo combinado, sem surpresas no final.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PORTFOLIO ========== -->
+  <section class="portfolio section" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Portfólio</div>
+        <h2 class="section-title reveal">
+          Projetos que<br />
+          <span class="gradient-text">entregam resultado</span>
+        </h2>
+        <p class="section-desc reveal">Cada projeto é uma solução sob medida — do conceito ao deploy.</p>
+      </div>
+    </div>
+
+    <!-- ── CINEMATIC SHOWCASE SLIDER ── -->
+    <div class="ps-showcase" id="psShowcase">
+      <div class="ps-track" id="psTrack">
+
+        <!-- SLIDE 01: EcoTribe -->
+        <div class="ps-slide ps-active" data-index="0">
+          <div class="ps-bg ps-bg-1"></div>
+          <div class="ps-inner">
+            <div class="ps-info">
+              <div class="ps-meta-row">
+                <span class="ps-num">01</span><span class="ps-sep">/</span><span class="ps-total">03</span>
+              </div>
+              <div class="ps-cat"><span class="cat-dot cat-green"></span>Site · Evento</div>
+              <h3 class="ps-title">Eco Tribe Festival</h3>
+              <p class="ps-desc">Site completo para captação de clientes, venda de ingressos, divulgação do lineup de DJs, excursões e galeria de fotos das edições anteriores. Google Analytics integrado para rastreamento de conversões em tempo real.</p>
+              <div class="ps-tags">
+                <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Analytics</span>
+              </div>
+              <div class="ps-status ps-live"><i class="fas fa-circle"></i>Projeto no ar</div>
+              <a href="portfolio.html" class="btn btn-primary ps-cta">
+                Ver detalhes completos <i class="fas fa-arrow-right"></i><span class="btn-glow"></span>
+              </a>
+            </div>
+            <div class="ps-visual">
+              <div class="ps-frame">
+                <div class="ps-frame-bar">
+                  <span class="f-dot fd-red"></span><span class="f-dot fd-yellow"></span><span class="f-dot fd-green"></span>
+                  <span class="ps-frame-url">ecotribe.com.br</span>
+                </div>
+                <div class="ps-frame-body">
+                  <iframe src="https://ecotribe.com.br#top" scrolling="no" tabindex="-1" class="ps-iframe" loading="lazy"></iframe>
+                </div>
+              </div>
+              <div class="ps-visual-glow ps-glow-green"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 02: Confeitaria -->
+        <div class="ps-slide" data-index="1">
+          <div class="ps-bg ps-bg-2"></div>
+          <div class="ps-inner">
+            <div class="ps-info">
+              <div class="ps-meta-row">
+                <span class="ps-num">02</span><span class="ps-sep">/</span><span class="ps-total">03</span>
+              </div>
+              <div class="ps-cat"><span class="cat-dot cat-purple"></span>App · E-commerce</div>
+              <h3 class="ps-title">Doce Arte Confeitaria</h3>
+              <p class="ps-desc">Plataforma completa para confeitaria artesanal: cardápio digital interativo, sistema de pedidos online com painel administrativo, gestão de agenda de encomendas e controle automatizado de estoque.</p>
+              <div class="ps-tags">
+                <span>React</span><span>Node.js</span><span>Expo</span><span>Firebase</span>
+              </div>
+              <div class="ps-status ps-soon"><i class="fas fa-clock"></i>Lançamento previsto: Junho 2026</div>
+              <a href="portfolio.html" class="btn btn-primary ps-cta btn-purple">
+                Ver detalhes completos <i class="fas fa-arrow-right"></i><span class="btn-glow"></span>
+              </a>
+            </div>
+            <div class="ps-visual">
+              <div class="ps-frame">
+                <div class="ps-frame-bar">
+                  <span class="f-dot fd-red"></span><span class="f-dot fd-yellow"></span><span class="f-dot fd-green"></span>
+                  <span class="ps-frame-url">docearte.app · Em breve</span>
+                </div>
+                <div class="ps-frame-body ps-placeholder">
+                  <div class="ph-wrap ph-purple">
+                    <div class="ph-topbar"></div>
+                    <div class="ph-hero-area">
+                      <div class="ph-icon-big"><i class="fas fa-birthday-cake"></i></div>
+                      <div class="ph-line ph-line-title"></div>
+                      <div class="ph-line ph-line-sub"></div>
+                      <div class="ph-cta-btn"></div>
+                    </div>
+                    <div class="ph-cards-row">
+                      <div class="ph-card"></div><div class="ph-card"></div><div class="ph-card"></div>
+                    </div>
+                    <div class="ph-badge">Em desenvolvimento</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ps-visual-glow ps-glow-purple"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 03: Torcida -->
+        <div class="ps-slide" data-index="2">
+          <div class="ps-bg ps-bg-3"></div>
+          <div class="ps-inner">
+            <div class="ps-info">
+              <div class="ps-meta-row">
+                <span class="ps-num">03</span><span class="ps-sep">/</span><span class="ps-total">03</span>
+              </div>
+              <div class="ps-cat"><span class="cat-dot cat-blue"></span>Site · Esporte</div>
+              <h3 class="ps-title">Torcida Organizada</h3>
+              <p class="ps-desc">Site institucional com identidade visual forte e design arrojado. Notícias, galeria de fotos, calendário de jogos e área de associados — construído para criar comunidade e engajamento duradouro.</p>
+              <div class="ps-tags">
+                <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+              </div>
+              <div class="ps-status ps-ready"><i class="fas fa-check-circle"></i>Pronto · Aguardando publicação</div>
+              <a href="portfolio.html" class="btn btn-primary ps-cta btn-blue">
+                Ver detalhes completos <i class="fas fa-arrow-right"></i><span class="btn-glow"></span>
+              </a>
+            </div>
+            <div class="ps-visual">
+              <div class="ps-frame">
+                <div class="ps-frame-bar">
+                  <span class="f-dot fd-red"></span><span class="f-dot fd-yellow"></span><span class="f-dot fd-green"></span>
+                  <span class="ps-frame-url">torcida.com.br · Pronto</span>
+                </div>
+                <div class="ps-frame-body ps-placeholder">
+                  <div class="ph-wrap ph-blue">
+                    <div class="ph-topbar ph-topbar-blue"></div>
+                    <div class="ph-hero-area">
+                      <div class="ph-icon-big ph-icon-blue"><i class="fas fa-shield-alt"></i></div>
+                      <div class="ph-line ph-line-title ph-line-blue"></div>
+                      <div class="ph-line ph-line-sub"></div>
+                      <div class="ph-cta-btn ph-btn-blue"></div>
+                    </div>
+                    <div class="ph-cards-row">
+                      <div class="ph-card"></div><div class="ph-card"></div><div class="ph-card"></div>
+                    </div>
+                    <div class="ph-badge ph-badge-blue">Pronto para publicar</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ps-visual-glow ps-glow-blue"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ps-track -->
+
+      <!-- Controles -->
+      <div class="ps-controls">
+        <button class="ps-arrow" id="psPrev" aria-label="Projeto anterior"><i class="fas fa-arrow-left"></i></button>
+        <div class="ps-dots">
+          <button class="ps-dot ps-dot-active" data-slide="0" aria-label="Projeto 1"></button>
+          <button class="ps-dot" data-slide="1" aria-label="Projeto 2"></button>
+          <button class="ps-dot" data-slide="2" aria-label="Projeto 3"></button>
+        </div>
+        <button class="ps-arrow" id="psNext" aria-label="Próximo projeto"><i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="ps-progress-wrap">
+        <div class="ps-progress" id="psProgress"></div>
+      </div>
+    </div><!-- /ps-showcase -->
+
+    <div class="container">
+      <div class="pf-cta reveal">
+        <a href="portfolio.html" class="btn btn-ghost">
+          Explorar portfólio completo <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section section" id="contact">
+    <div class="orb orb-cta-1"></div>
+    <div class="orb orb-cta-2"></div>
+    <div class="container">
+      <div class="cta-wrapper reveal">
+        <div class="cta-icon"><i class="fas fa-rocket"></i></div>
+        <h2 class="cta-title">
+          Sua presença digital<br />
+          <span class="gradient-text">começa aqui.</span>
+        </h2>
+        <p class="cta-desc">Dê o primeiro passo. Compartilhe sua ideia e receba uma proposta sob medida para o seu negócio.</p>
+        <a href="https://wa.me/5581998669437?text=Olá!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento.%20Meu%20projeto%20é..." target="_blank" class="btn btn-primary btn-xl">
+          <i class="fab fa-whatsapp"></i>
+          Falar no WhatsApp
+          <span class="btn-glow"></span>
+        </a>
+        <p class="cta-note"><i class="fas fa-shield-alt"></i> Resposta em até 1 hora em horário comercial</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">ARTHUR FALCÃO <span>DEV</span></a>
+          <p>Transformando ideias em experiências digitais que geram resultado.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/arthurfalcaodev/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/arthur-falc%C3%A3o-pimentel-069120341/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#about">Por que funciona?</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#contact">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="#">Criação de Sites</a></li>
+            <li><a href="#">Apps Mobile</a></li>
+            <li><a href="#">Sistemas Web</a></li>
+            <li><a href="#">UI/UX Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="https://wa.me/5581998669437" target="_blank"><i class="fab fa-whatsapp"></i>+55 (81) 99866-9437</a></li>
+            <li><a href="mailto:dev.arthurfalcao@gmail.com"><i class="fas fa-envelope"></i>dev.arthurfalcao@gmail.com</a></li>
+            <li><span><i class="fas fa-map-marker-alt"></i> Recife, Pernambuco, Brasil</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Arthur Falcão Dev — Todos os direitos reservados</p>
+        <p>Feito com <span class="heart">♥</span> e muito café</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5581998669437?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wpp-tooltip">Fale comigo!</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
