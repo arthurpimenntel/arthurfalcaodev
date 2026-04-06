@@ -472,6 +472,9 @@ body.portfolio-page { background: var(--bg); }
 .proj-browser-screen { position: relative; height: calc(100% - 40px); overflow: hidden; background: #090d1a; }
 .proj-iframe { width: 250%; height: 250%; border: none; pointer-events: none; transform: scale(0.4); transform-origin: top left; }
 
+/* ── Home page: iframe in browser frame ── */
+.ps-iframe { width: 250%; height: 250%; border: none; pointer-events: none; transform: scale(0.4); transform-origin: top left; }
+
 /* Mockup designs */
 .proj-mockup-wrap { position: relative; }
 .proj-mockup { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
@@ -565,7 +568,7 @@ body.portfolio-page { background: var(--bg); }
   /* Slider mobile */
   .ps-track { height: auto; min-height: 560px; }
   .ps-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem; height: auto; min-height: 560px; }
-  .ps-visual { display: none; }
+  .ps-visual { order: -1; height: 300px; }
   .ps-title { font-size: 1.7rem; }
   .ps-desc { font-size: 0.85rem; }
 
