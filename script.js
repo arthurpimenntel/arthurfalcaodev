@@ -15,6 +15,7 @@ window.addEventListener('load', () => {
     // Start slider after load
     if (document.getElementById('psShowcase')) {
       startSlider();
+      initVideoSwitchers();
     }
   }, 1600);
 });
@@ -430,4 +431,92 @@ function startSlider() {
 
   startProgress();
   restartAutoplay();
+}
+
+// ===========================================================
+// VIDEO SWITCHER — alternates between 2 videos per slide
+// ===========================================================
+function initVideoSwitchers() {
+  // Config per slide index: [label-A, icon-A, label-B, icon-B, switchAfterMs]
+  const configs = [
+    { labels: ['Site', 'fas fa-globe'],       single: true  },          // slide 0: Hórus, 1 vídeo
+    { labels: ['Loja', 'fas fa-store',
+               'Admin', 'fas fa-cog'],        switchAt: 32000 },        // slide 1: Bruna (~32s no primeiro)
+    { labels: ['Loja', 'fas fa-store',
+               'Admin', 'fas fa-cog'],        switchAt: 55000 },        // slide 2: Centenários
+  ];
+
+  configs.forEach((cfg, idx) => {
+    const switcher = document.getElementById(`vid-switcher-${idx}`);
+    const labelEl  = document.getElementById(`vid-label-${idx}`);
+    if (!switcher) return;
+
+    const videos = Array.from(switcher.querySelectorAll('.ps-vid'));
+    if (!videos.length) return;
+
+    let current = 0;
+    let switchTimer = null;
+
+    function setLabel(i) {
+      if (!labelEl) return;
+      const offset = i * 2;
+      const text   = cfg.labels[offset]     || '';
+      const icon   = cfg.labels[offset + 1] || 'fas fa-circle';
+      labelEl.innerHTML = `<i class="${icon}"></i> ${text}`;
+    }
+
+    function playVideo(i) {
+      videos.forEach((v, vi) => {
+        v.classList.toggle('ps-vid-active', vi === i);
+        if (vi === i) {
+          v.currentTime = 0;
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+      setLabel(i);
+    }
+
+    function scheduleSwitch() {
+      if (cfg.single || videos.length < 2) return;
+      clearTimeout(switchTimer);
+      switchTimer = setTimeout(() => {
+        current = current === 0 ? 1 : 0;
+        // Fade label out, swap, fade in
+        if (labelEl) labelEl.style.opacity = '0';
+        setTimeout(() => {
+          playVideo(current);
+          if (labelEl) labelEl.style.opacity = '1';
+          scheduleSwitch(); // loop back
+        }, 350);
+      }, current === 0 ? cfg.switchAt : 10000); // admin → loja after 10s
+    }
+
+    // Observe slide becoming active to start/stop
+    const slide = switcher.closest('.ps-slide');
+    if (!slide) return;
+
+    const observer = new MutationObserver(() => {
+      const isActive = slide.classList.contains('ps-active');
+      if (isActive) {
+        current = 0;
+        playVideo(0);
+        scheduleSwitch();
+      } else {
+        clearTimeout(switchTimer);
+        videos.forEach(v => v.pause());
+      }
+    });
+
+    observer.observe(slide, { attributes: true, attributeFilter: ['class'] });
+
+    // Trigger for slide 0 on init (already active)
+    if (slide.classList.contains('ps-active')) {
+      setTimeout(() => {
+        playVideo(0);
+        scheduleSwitch();
+      }, 200);
+    }
+  });
 }
