@@ -352,6 +352,10 @@ img { max-width: 100%; display: block; }
 .cat-dot.cat-gold { background: #d4af37; box-shadow: 0 0 6px rgba(212,175,55,0.6); }
 .btn-gold { background: linear-gradient(135deg, #c9a227, #e8c84a) !important; color: #0a0d14 !important; }
 .btn-gold:hover { box-shadow: 0 0 28px rgba(212,175,55,0.35) !important; }
+.btn-green { background: var(--accent); color: #0a0d14 !important; }
+.btn-green:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,230,118,0.4), 0 8px 25px rgba(0,0,0,0.3); }
+.ps-bg-eco { background: linear-gradient(145deg, #060810 0%, #071209 100%); }
+.ps-bg-eco::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 85% 50%, rgba(0,230,118,0.1) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 15% 30%, rgba(0,230,118,0.04) 0%, transparent 60%); }
 .ps-dev { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); color: #d4af37; }
 .ps-dev i { font-size: 0.6rem; }
 
@@ -583,3 +587,24 @@ body.portfolio-page { background: var(--bg); }
   .proj-art-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
   .proj-art-number { font-size: 2.5rem; }
 }
+
+/* ── Portfolio page: video in browser frame ── */
+.proj-vid-screen { position: relative; height: calc(100% - 40px); overflow: hidden; background: #090d1a; }
+.proj-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+.proj-vid-active { opacity: 1; }
+.proj-vid-label { position: absolute; bottom: 10px; right: 10px; background: rgba(10,13,22,0.82); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(8px); color: #fff; font-size: 0.7rem; font-weight: 600; padding: 0.3rem 0.65rem; border-radius: 99px; display: flex; align-items: center; gap: 0.4rem; pointer-events: none; transition: opacity 0.3s; z-index: 10; }
+
+/* ── proj-art-4: gold tint ── */
+.proj-art-4 { background: linear-gradient(180deg, var(--bg) 0%, #0d0c06 50%, var(--bg) 100%); }
+.proj-art-4::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.06), transparent 70%); top: 50%; left: -150px; transform: translateY(-50%); pointer-events: none; }
+
+/* ── gold feature icon ── */
+.proj-feat-gold { background: rgba(212,175,55,0.1) !important; color: #d4af37 !important; }
+
+/* ── launch-box-gold ── */
+.launch-box-gold { background: rgba(212,175,55,0.06) !important; border-color: rgba(212,175,55,0.25) !important; }
+.launch-box-gold i { color: #d4af37 !important; }
+
+/* ── btn-gold-solid ── */
+.btn-gold-solid { background: linear-gradient(135deg, #c9a227, #e8c84a); color: #0a0d14 !important; }
+.btn-gold-solid:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(212,175,55,0.45), 0 8px 25px rgba(0,0,0,0.3); }

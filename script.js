@@ -437,16 +437,16 @@ function startSlider() {
 // VIDEO SWITCHER — alternates between 2 videos per slide
 // ===========================================================
 function initVideoSwitchers() {
-  // Config per slide index: [label-A, icon-A, label-B, icon-B, switchAfterMs]
+  // Config per slide index
+  // EcoTribe (slide 0) has no vid-switcher (uses iframe), so configs start at index 1
   const configs = [
-    { labels: ['Site', 'fas fa-globe'],       single: true  },          // slide 0: Hórus, 1 vídeo
-    { labels: ['Loja', 'fas fa-store',
-               'Admin', 'fas fa-cog'],        switchAt: 32000 },        // slide 1: Bruna (~32s no primeiro)
-    { labels: ['Loja', 'fas fa-store',
-               'Admin', 'fas fa-cog'],        switchAt: 55000 },        // slide 2: Centenários
+    { idx: 1, labels: ['Site',  'fas fa-globe'],                            single: true    }, // slide 1: Hórus
+    { idx: 2, labels: ['Loja',  'fas fa-store', 'Admin', 'fas fa-cog'],     switchAt: 32000 }, // slide 2: Bruna
+    { idx: 3, labels: ['Loja',  'fas fa-store', 'Admin', 'fas fa-cog'],     switchAt: 55000 }, // slide 3: Centenários
   ];
 
-  configs.forEach((cfg, idx) => {
+  configs.forEach((cfg) => {
+    const idx = cfg.idx;
     const switcher = document.getElementById(`vid-switcher-${idx}`);
     const labelEl  = document.getElementById(`vid-label-${idx}`);
     if (!switcher) return;
@@ -518,5 +518,94 @@ function initVideoSwitchers() {
         scheduleSwitch();
       }, 200);
     }
+  });
+}
+
+// ── Portfolio Page: Video switchers (Bruna + Centenários + Hórus) ──────────
+function initPortfolioVideos() {
+  // Each config: { vidA, vidB, labelEl, switchAt (ms), adminLabel }
+  const pairs = [
+    {
+      vidA:     document.getElementById('bruna-vid-a'),
+      vidB:     document.getElementById('bruna-vid-b'),
+      labelEl:  document.getElementById('bruna-vid-label'),
+      switchAt: 32000,
+      labelA:   '<i class="fas fa-store"></i> Loja',
+      labelB:   '<i class="fas fa-cog"></i> Admin',
+    },
+    {
+      vidA:     document.getElementById('cent-vid-a'),
+      vidB:     document.getElementById('cent-vid-b'),
+      labelEl:  document.getElementById('cent-vid-label'),
+      switchAt: 55000,
+      labelA:   '<i class="fas fa-store"></i> Loja',
+      labelB:   '<i class="fas fa-cog"></i> Admin',
+    },
+  ];
+
+  pairs.forEach(({ vidA, vidB, labelEl, switchAt, labelA, labelB }) => {
+    if (!vidA || !vidB) return;
+    let current = 0;
+    let timer = null;
+
+    function play(idx) {
+      const active = idx === 0 ? vidA : vidB;
+      const inactive = idx === 0 ? vidB : vidA;
+      active.classList.add('proj-vid-active');
+      inactive.classList.remove('proj-vid-active');
+      inactive.pause();
+      active.currentTime = 0;
+      active.play().catch(() => {});
+      if (labelEl) {
+        labelEl.style.opacity = '0';
+        setTimeout(() => {
+          labelEl.innerHTML = idx === 0 ? labelA : labelB;
+          labelEl.style.opacity = '1';
+        }, 250);
+      }
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        current = current === 0 ? 1 : 0;
+        play(current);
+        schedule();
+      }, current === 0 ? switchAt : 10000);
+    }
+
+    // Start when scrolled into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          play(0);
+          schedule();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(vidA.closest('.proj-browser-screen') || vidA);
+  });
+
+  // Hórus — just autoplay on scroll
+  const horusVid = document.getElementById('horus-vid');
+  if (horusVid) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          horusVid.play().catch(() => {});
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(horusVid);
+  }
+}
+
+// Run on portfolio page
+if (document.querySelector('.ppage-projects')) {
+  window.addEventListener('load', () => {
+    setTimeout(initPortfolioVideos, 500);
   });
 }
