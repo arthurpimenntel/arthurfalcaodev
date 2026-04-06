@@ -609,3 +609,29 @@ if (document.querySelector('.ppage-projects')) {
     setTimeout(initPortfolioVideos, 500);
   });
 }
+
+// ── EcoTribe Countdown (slide preview) ──────
+function startEcoCountdown() {
+  const target = new Date('2026-04-18T22:00:00');
+  const d = document.getElementById('eco-cd-d');
+  const h = document.getElementById('eco-cd-h');
+  const m = document.getElementById('eco-cd-m');
+  const s = document.getElementById('eco-cd-s');
+  if (!d) return;
+  function pad(n) { return String(n).padStart(2,'0'); }
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) { d.textContent=h.textContent=m.textContent=s.textContent='00'; return; }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+    d.textContent = pad(days);
+    h.textContent = pad(hours);
+    m.textContent = pad(mins);
+    s.textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+startEcoCountdown();
