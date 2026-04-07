@@ -566,9 +566,9 @@ body.portfolio-page { background: var(--bg); }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 
   /* Slider mobile */
-  .ps-track { height: auto; min-height: 560px; }
-  .ps-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem; height: auto; min-height: 560px; }
-  .ps-visual { order: -1; height: 300px; }
+  .ps-track { height: auto; min-height: 0; }
+  .ps-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem 1rem; height: auto; min-height: auto; }
+  .ps-visual { order: -1; height: 260px; }
   .ps-title { font-size: 1.7rem; }
   .ps-desc { font-size: 0.85rem; }
 
