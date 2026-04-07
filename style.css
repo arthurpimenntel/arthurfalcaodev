@@ -545,7 +545,7 @@ body.portfolio-page { background: var(--bg); }
 
 @media (max-width: 768px) {
   .hamburger { display: flex; }
-  .nav-links { position: fixed; top: 0; right: -100%; width: min(260px, 55vw); height: 100vh; background: rgba(10, 13, 24, 0.98); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: flex-start; padding: 1.5rem 1rem; gap: 1.5rem; transition: right 0.4s cubic-bezier(0.4,0,0.2,1); border-left: 1px solid var(--border); z-index: 1001; }
+  .nav-links { position: fixed; top: 0; right: -100%; width: min(260px, 55vw); height: auto; background: rgba(10, 13, 24, 0.98); backdrop-filter: blur(20px); flex-direction: column; justify-content: flex-start; align-items: flex-start; padding: 5.5rem 1.5rem 1.5rem; gap: 1.5rem; transition: right 0.4s cubic-bezier(0.4,0,0.2,1); border-left: 1px solid var(--border); z-index: 1001; max-height: 100vh; overflow-y: auto; }
   .nav-links.open { right: 0; }
   .nav-logo { font-size: 0.75rem; letter-spacing: 0; }
   .nav-link { font-size: 1.1rem; }
@@ -566,7 +566,7 @@ body.portfolio-page { background: var(--bg); }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 
   /* Slider mobile */
-  .ps-track { height: auto; min-height: 0; }
+  .ps-track { height: auto; min-height: 320px; }
   .ps-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem 1rem; height: auto; min-height: auto; }
   .ps-visual { order: -1; height: 260px; }
   .ps-title { font-size: 1.7rem; }
