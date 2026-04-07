@@ -566,7 +566,10 @@ body.portfolio-page { background: var(--bg); }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 
   /* Slider mobile */
-  .ps-track { height: auto; min-height: 320px; }
+  .ps-track { height: auto; min-height: 0; overflow: visible; }
+  .ps-slide { position: relative; transform: none; display: none; width: 100%; height: auto; }
+  .ps-slide.ps-active { display: block; transform: none; }
+  .ps-slide.ps-exit-left { display: none; transform: none; }
   .ps-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem 1rem; height: auto; min-height: auto; }
   .ps-visual { order: -1; height: 260px; }
   .ps-title { font-size: 1.7rem; }
