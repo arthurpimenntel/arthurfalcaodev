@@ -470,7 +470,13 @@ body.portfolio-page { background: var(--bg); }
 .proj-browser-url i { color: var(--accent); font-size: 0.6rem; }
 .proj-browser-actions { color: var(--text-dim); font-size: 0.8rem; }
 .proj-browser-screen { position: relative; height: calc(100% - 40px); overflow: hidden; background: #090d1a; }
-.proj-iframe { width: 250%; height: 250%; border: none; pointer-events: none; transform: scale(0.4); transform-origin: top left; }
+.proj-iframe {
+  position: absolute;   /* ← isso iguala o comportamento com os vídeos */
+  top: 0; left: 0;
+  width: 250%; height: 250%;
+  border: none; pointer-events: none;
+  transform: scale(0.4); transform-origin: top left;
+}
 
 /* ── Home page: iframe in browser frame ── */
 .ps-iframe { width: 250%; height: 250%; border: none; pointer-events: none; transform: scale(0.4); transform-origin: top left; }
@@ -740,4 +746,89 @@ body.portfolio-page { background: var(--bg); }
 .eco-btn-wpp {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);
+}
+
+/* =============================================
+   PORTFOLIO FIX — Todos os 4 projetos:
+   título + preview à ESQUERDA (colados)
+   conteúdo (info) à DIREITA
+   Apenas desktop (min-width: 1025px).
+============================================= */
+
+@media (min-width: 1025px) {
+
+  .proj-art-1 .proj-art-inner,
+  .proj-art-2 .proj-art-inner,
+  .proj-art-3 .proj-art-inner,
+  .proj-art-4 .proj-art-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content auto;
+    column-gap: 4rem;
+    row-gap: 0; /* ← CORRIGIDO: era 0.75rem, agora 0 para eliminar o espaço entre header e preview em todos os projetos */
+    align-items: start;
+  }
+
+  .proj-art-1 .proj-art-header,
+  .proj-art-2 .proj-art-header,
+  .proj-art-3 .proj-art-header,
+  .proj-art-4 .proj-art-header {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  .proj-art-1 .proj-art-body,
+  .proj-art-2 .proj-art-body,
+  .proj-art-3 .proj-art-body,
+  .proj-art-4 .proj-art-body {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: contents;
+  }
+
+  .proj-art-1 .proj-art-preview,
+  .proj-art-2 .proj-art-preview,
+  .proj-art-3 .proj-art-preview,
+  .proj-art-4 .proj-art-preview {
+    grid-column: 1 / 2;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .proj-art-1 .proj-art-info,
+  .proj-art-2 .proj-art-info,
+  .proj-art-3 .proj-art-info,
+  .proj-art-4 .proj-art-info {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    align-self: center;
+    direction: ltr;
+  }
+
+
+.proj-art-1 .proj-browser {
+  aspect-ratio: 16/10;
+  max-height: none;
+  height: auto;
+}
+
+.proj-art-1 .proj-browser-screen {
+  position: relative;
+  height: calc(100% - 40px);
+  overflow: hidden;
+}
+
+.proj-art-1 .proj-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250%;
+  height: 250%;
+  border: none;
+  pointer-events: none;
+  transform: scale(0.4);
+  transform-origin: top left;
+}
+
 }
