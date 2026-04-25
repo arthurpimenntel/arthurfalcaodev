@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — Arthur Falcão Dev</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #060810;
+      --surface:   #0d1117;
+      --surface2:  #161b22;
+      --surface3:  #21262d;
+      --border:    rgba(255,255,255,0.08);
+      --border2:   rgba(255,255,255,0.14);
+      --text:      #e6edf3;
+      --text-dim:  #7d8590;
+      --text-mute: #484f58;
+      --accent:    #58a6ff;
+      --accent-dim:#1f6feb;
+      --green:     #22c55e;
+      --green-dim: #166534;
+      --red:       #ef4444;
+      --red-dim:   #7f1d1d;
+      --gold:      #d4a017;
+      --purple:    #a855f7;
+      --blue:      #3b82f6;
+      --radius:    10px;
+      --shadow:    0 4px 24px rgba(0,0,0,.6);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ─── LOGIN SCREEN ──────────────────────────────────── */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(88,166,255,.12) 0%, transparent 60%);
+    }
+
+    .login-card {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .login-logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+    .login-logo span { color: var(--accent); }
+    .login-sub { color: var(--text-dim); font-size: .8rem; margin-bottom: 2rem; }
+
+    .login-icon {
+      width: 56px; height: 56px;
+      background: rgba(88,166,255,.12);
+      border: 1px solid rgba(88,166,255,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--accent);
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ─── FORMS ─────────────────────────────────────────── */
+    .form-group { margin-bottom: 1rem; text-align: left; }
+    .form-group label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .4rem;
+    }
+    .form-control {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text);
+      padding: .65rem .9rem;
+      font-size: .875rem;
+      font-family: inherit;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--accent); }
+    textarea.form-control { resize: vertical; min-height: 90px; }
+    select.form-control { cursor: pointer; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--accent-dim);
+      color: #fff;
+      border: none; border-radius: var(--radius);
+      padding: .7rem 1.4rem;
+      font-size: .875rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: background .2s, transform .1s;
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-primary:active { transform: scale(.98); }
+    .btn-primary.full-width { width: 100%; justify-content: center; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border2); border-radius: var(--radius);
+      padding: .7rem 1.4rem;
+      font-size: .875rem; font-weight: 500; font-family: inherit;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-danger {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(239,68,68,.15);
+      color: var(--red);
+      border: 1px solid rgba(239,68,68,.3); border-radius: var(--radius);
+      padding: .5rem .9rem;
+      font-size: .8rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-danger:hover { background: rgba(239,68,68,.3); }
+
+    .btn-edit {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(88,166,255,.12);
+      color: var(--accent);
+      border: 1px solid rgba(88,166,255,.25); border-radius: var(--radius);
+      padding: .5rem .9rem;
+      font-size: .8rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-edit:hover { background: rgba(88,166,255,.25); }
+
+    .login-error {
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.3);
+      border-radius: 8px;
+      color: #fca5a5;
+      padding: .6rem .9rem;
+      font-size: .8rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .login-error.show { display: block; }
+
+    /* ─── ADMIN LAYOUT ──────────────────────────────────── */
+    #adminScreen { display: none; }
+
+    .admin-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-logo { font-size: .95rem; font-weight: 800; letter-spacing: .06em; }
+    .admin-logo span { color: var(--accent); }
+    .admin-header-right { display: flex; align-items: center; gap: .75rem; }
+    .admin-badge {
+      background: rgba(88,166,255,.12);
+      border: 1px solid rgba(88,166,255,.25);
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: .7rem; font-weight: 700;
+      padding: .2rem .6rem;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+
+    .admin-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ─── TABS ──────────────────────────────────────────── */
+    .tabs {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: var(--text-dim); padding: .6rem 1rem;
+      font-size: .875rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all .2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── PROJECTS TABLE ────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-size: 1.1rem; font-weight: 700;
+    }
+
+    .projects-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .projects-table th {
+      background: var(--surface2);
+      color: var(--text-dim);
+      font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      padding: .7rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .projects-table td {
+      padding: .85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .projects-table tr:last-child td { border-bottom: none; }
+    .projects-table tbody tr:hover { background: rgba(255,255,255,.02); }
+
+    .proj-row-title { font-weight: 600; }
+    .proj-row-cat {
+      display: inline-block;
+      padding: .2rem .5rem;
+      border-radius: 5px;
+      font-size: .7rem; font-weight: 600;
+    }
+    .cat-pill-green  { background: rgba(34,197,94,.15); color: #4ade80; }
+    .cat-pill-gold   { background: rgba(212,160,23,.15); color: #fbbf24; }
+    .cat-pill-purple { background: rgba(168,85,247,.15); color: #c084fc; }
+    .cat-pill-blue   { background: rgba(59,130,246,.15); color: #60a5fa; }
+    .cat-pill-red    { background: rgba(239,68,68,.15); color: #f87171; }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: .3rem;
+      padding: .2rem .55rem; border-radius: 5px;
+      font-size: .7rem; font-weight: 600;
+    }
+    .status-live-badge { background: rgba(34,197,94,.15); color: #4ade80; }
+    .status-dev-badge  { background: rgba(88,166,255,.1);  color: var(--accent); }
+    .status-live-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+    .toggle-switch {
+      position: relative; display: inline-block;
+      width: 38px; height: 20px;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; inset: 0;
+      background: var(--surface3); border-radius: 20px;
+      cursor: pointer; transition: background .2s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 14px; height: 14px;
+      left: 3px; bottom: 3px;
+      background: #fff; border-radius: 50%;
+      transition: transform .2s;
+    }
+    .toggle-switch input:checked + .toggle-slider { background: var(--green); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+    .row-actions { display: flex; gap: .4rem; }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-dim);
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: .75rem; opacity: .4; }
+
+    /* ─── FORM PANEL ────────────────────────────────────── */
+    .form-panel {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+    .form-panel-title {
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .form-panel-title i { color: var(--accent); }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .form-section-label {
+      font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+      color: var(--text-dim);
+      margin: 1.5rem 0 .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .form-section-label::before {
+      content: '';
+      flex: 1; height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Dynamic lists (features, stack, videos) ── */
+    .dynamic-list { display: flex; flex-direction: column; gap: .6rem; }
+
+    .dynamic-row {
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .6rem .75rem;
+    }
+
+    .dynamic-row .fields { flex: 1; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .dynamic-row .fields .form-control { margin: 0; }
+    .dynamic-row .fields .fc-icon { flex: 0 0 170px; }
+    .dynamic-row .fields .fc-title { flex: 0 0 180px; }
+    .dynamic-row .fields .fc-desc { flex: 1; min-width: 160px; }
+
+    .btn-remove-row {
+      background: none; border: none;
+      color: var(--text-mute); cursor: pointer;
+      padding: .35rem;
+      border-radius: 5px;
+      transition: color .2s;
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .btn-remove-row:hover { color: var(--red); }
+
+    .add-row-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.04);
+      border: 1px dashed var(--border2);
+      border-radius: 8px;
+      color: var(--text-dim);
+      padding: .55rem 1rem;
+      font-size: .8rem; font-weight: 500; font-family: inherit;
+      cursor: pointer; transition: all .2s;
+      width: 100%;
+      margin-top: .25rem;
+    }
+    .add-row-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(88,166,255,.06); }
+
+    /* Color picker row */
+    .color-row { display: flex; align-items: center; gap: .75rem; }
+    input[type="color"] {
+      width: 44px; height: 38px;
+      border: 1px solid var(--border2); border-radius: 8px;
+      background: var(--surface2);
+      cursor: pointer; padding: 2px;
+    }
+
+    /* Stack tags */
+    .stack-tags-wrap {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: .6rem .75rem;
+      min-height: 44px;
+      cursor: text;
+    }
+    .stack-tag-pill {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: rgba(88,166,255,.15);
+      border: 1px solid rgba(88,166,255,.25);
+      border-radius: 5px;
+      color: var(--accent);
+      font-size: .75rem; font-weight: 600;
+      padding: .2rem .5rem;
+    }
+    .stack-tag-pill button {
+      background: none; border: none; cursor: pointer;
+      color: inherit; opacity: .6; font-size: .65rem; padding: 0;
+    }
+    .stack-tag-pill button:hover { opacity: 1; }
+    .stack-input {
+      flex: 1; min-width: 100px;
+      background: none; border: none; outline: none;
+      color: var(--text); font-family: inherit; font-size: .875rem;
+    }
+
+    /* Form actions */
+    .form-actions {
+      display: flex; gap: .75rem; justify-content: flex-end;
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── TOAST ─────────────────────────────────────────── */
+    .toast-container {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      display: flex; flex-direction: column; gap: .5rem;
+      z-index: 9999;
+    }
+    .toast {
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: .75rem 1rem;
+      font-size: .85rem;
+      box-shadow: var(--shadow);
+      animation: toastIn .3s ease;
+      max-width: 320px;
+    }
+    .toast.success { border-color: rgba(34,197,94,.4); }
+    .toast.success i { color: var(--green); }
+    .toast.error { border-color: rgba(239,68,68,.4); }
+    .toast.error i { color: var(--red); }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── MODAL CONFIRM ─────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.7);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 500; padding: 1rem;
+      display: none;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 420px;
+      text-align: center;
+    }
+    .modal-icon {
+      width: 52px; height: 52px;
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--red);
+      margin: 0 auto 1rem;
+    }
+    .modal h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .modal p { color: var(--text-dim); font-size: .875rem; margin-bottom: 1.5rem; }
+    .modal-actions { display: flex; gap: .75rem; justify-content: center; }
+
+    /* ─── LOADING STATE ─────────────────────────────────── */
+    .table-loading {
+      text-align: center; padding: 2.5rem;
+      color: var(--text-dim);
+    }
+    .spinner {
+      width: 28px; height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto .75rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── MISC ──────────────────────────────────────────── */
+    .order-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: var(--surface3);
+      border-radius: 6px;
+      font-size: .8rem; font-weight: 700;
+      color: var(--text-dim);
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: 1; }
+      .projects-table { font-size: .8rem; }
+      .projects-table th:nth-child(3),
+      .projects-table td:nth-child(3) { display: none; }
+      .dynamic-row .fields .fc-icon { flex: 0 0 130px; }
+      .dynamic-row .fields .fc-title { flex: 0 0 130px; }
+      .admin-body { padding: 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-icon"><i class="fas fa-shield-alt"></i></div>
+    <div class="login-logo">ARTHUR FALCÃO <span>DEV</span></div>
+    <div class="login-sub">Painel Administrativo</div>
+
+    <div class="login-error" id="loginError">
+      <i class="fas fa-exclamation-circle"></i> Senha incorreta. Tente novamente.
+    </div>
+
+    <div class="form-group">
+      <label for="passwordInput">Senha de Acesso</label>
+      <input type="password" id="passwordInput" class="form-control"
+             placeholder="••••••••" autocomplete="current-password" />
+    </div>
+
+    <button class="btn-primary full-width" id="loginBtn">
+      <i class="fas fa-unlock-alt"></i> Entrar
+    </button>
+  </div>
+</div>
+
+<!-- ══ ADMIN ═══════════════════════════════════════════════ -->
+<div id="adminScreen">
+  <header class="admin-header">
+    <div class="admin-logo">ARTHUR FALCÃO <span>DEV</span></div>
+    <div class="admin-header-right">
+      <span class="admin-badge"><i class="fas fa-lock"></i> Admin</span>
+      <button class="btn-ghost" id="logoutBtn" style="padding:.4rem .8rem;font-size:.8rem;">
+        <i class="fas fa-sign-out-alt"></i> Sair
+      </button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="listTab">
+        <i class="fas fa-list"></i> Projetos
+      </button>
+      <button class="tab-btn" data-tab="formTab" id="formTabBtn">
+        <i class="fas fa-plus"></i> <span id="formTabLabel">Novo Projeto</span>
+      </button>
+    </div>
+
+    <!-- ── LIST TAB ── -->
+    <div class="tab-panel active" id="listTab">
+      <div class="section-header">
+        <h2 class="section-title">Todos os Projetos</h2>
+        <button class="btn-primary" id="newProjectBtn">
+          <i class="fas fa-plus"></i> Novo Projeto
+        </button>
+      </div>
+
+      <div id="tableWrap">
+        <div class="table-loading">
+          <div class="spinner"></div>
+          Carregando projetos...
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORM TAB ── -->
+    <div class="tab-panel" id="formTab">
+      <div class="form-panel">
+        <div class="form-panel-title">
+          <i class="fas fa-folder-plus"></i>
+          <span id="formTitle">Novo Projeto</span>
+        </div>
+
+        <input type="hidden" id="editId" />
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fTitle">Título *</label>
+            <input type="text" id="fTitle" class="form-control" placeholder="Nome do projeto" />
+          </div>
+          <div class="form-group">
+            <label for="fOrderIndex">Ordem de exibição *</label>
+            <input type="number" id="fOrderIndex" class="form-control" placeholder="1" min="1" />
+          </div>
+          <div class="form-group">
+            <label for="fCategory">Categoria *</label>
+            <input type="text" id="fCategory" class="form-control" placeholder="Ex: Site · Evento" />
+          </div>
+          <div class="form-group">
+            <label for="fCategoryColor">Cor da Categoria</label>
+            <select id="fCategoryColor" class="form-control">
+              <option value="green">🟢 Verde</option>
+              <option value="gold">🟡 Dourado</option>
+              <option value="purple">🟣 Roxo</option>
+              <option value="blue">🔵 Azul</option>
+              <option value="red">🔴 Vermelho</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="fDescShort">Descrição Curta * <small style="color:var(--text-mute)">(slider da home)</small></label>
+            <textarea id="fDescShort" class="form-control" rows="3" placeholder="Parágrafo curto para o slider..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="fDescLong">Descrição Longa * <small style="color:var(--text-mute)">(página portfolio)</small></label>
+            <textarea id="fDescLong" class="form-control" rows="4" placeholder="Descrição detalhada do projeto..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fStatus">Status</label>
+            <select id="fStatus" class="form-control">
+              <option value="dev">Em Desenvolvimento</option>
+              <option value="live">Projeto no Ar</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fLaunchDate">Data de Lançamento</label>
+            <input type="text" id="fLaunchDate" class="form-control" placeholder="Ex: Março 2025 ou Em breve" />
+          </div>
+          <div class="form-group">
+            <label for="fUrl">URL do Site</label>
+            <input type="url" id="fUrl" class="form-control" placeholder="https://meusite.com.br" />
+          </div>
+          <div class="form-group">
+            <label for="fIframeUrl">URL para iframe <small style="color:var(--text-mute)">(opcional)</small></label>
+            <input type="url" id="fIframeUrl" class="form-control" placeholder="https://meusite.com.br" />
+          </div>
+          <div class="form-group">
+            <label>Cor do Tema</label>
+            <div class="color-row">
+              <input type="color" id="fThemeColor" value="#22c55e" />
+              <input type="text" id="fThemeColorHex" class="form-control" value="#22c55e"
+                     placeholder="#22c55e" style="flex:1" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fPublished" style="margin-bottom:.6rem">Publicado</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="fPublished" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="form-section-label">Features</div>
+        <div class="dynamic-list" id="featuresList"></div>
+        <button class="add-row-btn" id="addFeatureBtn">
+          <i class="fas fa-plus"></i> Adicionar Feature
+        </button>
+
+        <!-- Stack -->
+        <div class="form-section-label">Stack Tecnológica</div>
+        <div class="stack-tags-wrap" id="stackWrap">
+          <input type="text" class="stack-input" id="stackInput"
+                 placeholder="Digite uma tech e pressione Enter ou vírgula..." />
+        </div>
+
+        <!-- Vídeos -->
+        <div class="form-section-label">Vídeos</div>
+        <div class="dynamic-list" id="videosList"></div>
+        <button class="add-row-btn" id="addVideoBtn">
+          <i class="fas fa-plus"></i> Adicionar Vídeo
+        </button>
+
+        <div class="form-actions">
+          <button class="btn-ghost" id="cancelFormBtn">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+          <button class="btn-primary" id="saveProjectBtn">
+            <i class="fas fa-save"></i> <span id="saveBtnLabel">Salvar Projeto</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL CONFIRM ═══════════════════════════════════════ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <div class="modal-icon"><i class="fas fa-trash"></i></div>
+    <h3>Excluir Projeto?</h3>
+    <p id="confirmText">Esta ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="confirmCancelBtn">Cancelar</button>
+      <button class="btn-danger" id="confirmOkBtn"><i class="fas fa-trash"></i> Excluir</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST CONTAINER ════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="supabase-config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

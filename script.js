@@ -1,5 +1,6 @@
 /* =============================================
-   ARTHUR FALCÃO DEV — JAVASCRIPT v2.0
+   ARTHUR FALCÃO DEV — JAVASCRIPT v2.1
+   (Supabase dynamic + Admin support)
 ============================================= */
 
 'use strict';
@@ -12,8 +13,9 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.hero .reveal, .ppage-hero .reveal').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), i * 120);
     });
-    // Start slider after load
-    if (document.getElementById('psShowcase')) {
+    // Slider é inicializado pelo projects.js após render dinâmico
+    // Se não há projects.js (fallback), inicia normalmente
+    if (document.getElementById('psShowcase') && !window.__projectsJsLoaded) {
       startSlider();
       initVideoSwitchers();
     }
@@ -635,3 +637,100 @@ function startEcoCountdown() {
   setInterval(tick, 1000);
 }
 startEcoCountdown();
+
+// ============================================================
+//  REINIT — chamados pelo projects.js após render dinâmico
+// ============================================================
+
+// Expõe para projects.js
+window.reinitSlider = function(totalSlides) {
+  // Pequeno delay para garantir que o DOM foi pintado
+  setTimeout(() => {
+    startSlider();
+  }, 100);
+};
+
+window.reinitVideoSwitchers = function() {
+  setTimeout(() => {
+    initVideoSwitchers();
+  }, 200);
+};
+
+// Re-init Intersection Observer para .reveal gerados dinamicamente
+window.reinitReveal = function() {
+  const newRevealEls = document.querySelectorAll('.reveal:not(.visible)');
+  newRevealEls.forEach(el => {
+    if (!el.closest('.hero') && !el.closest('.ppage-hero')) {
+      revealObserver.observe(el);
+    }
+  });
+};
+
+// Portfolio video switcher dinâmico (recebe array de projects)
+window.initPortfolioVideos = function(projects) {
+  if (!projects) return;
+  projects.forEach((proj) => {
+    const videos = Array.isArray(proj.videos) ? proj.videos : [];
+    if (videos.length < 2) {
+      // Single video: just play on scroll
+      const vid = document.querySelector(`#proj-${proj.id} .proj-vid-active`);
+      if (vid) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { vid.play().catch(()=>{}); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.3 });
+        obs.observe(vid);
+      }
+      return;
+    }
+
+    // Multi-video switcher
+    const vidA = document.querySelector(`#proj-${proj.id} .proj-vid:nth-child(1)`);
+    const vidB = document.querySelector(`#proj-${proj.id} .proj-vid:nth-child(2)`);
+    const labelEl = document.querySelector(`#pvl-${proj.id}`);
+    if (!vidA || !vidB) return;
+
+    let current = 0;
+    let timer   = null;
+    const SWITCH_AT = 32000;
+
+    function playVid(idx) {
+      const active   = idx === 0 ? vidA : vidB;
+      const inactive = idx === 0 ? vidB : vidA;
+      active.classList.add('proj-vid-active');
+      inactive.classList.remove('proj-vid-active');
+      inactive.pause();
+      active.currentTime = 0;
+      active.play().catch(()=>{});
+      if (labelEl) {
+        labelEl.style.opacity = '0';
+        setTimeout(() => {
+          const v = videos[idx];
+          labelEl.innerHTML = `<i class="${v.icon}"></i> ${v.label}`;
+          labelEl.style.opacity = '1';
+        }, 250);
+      }
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        current = current === 0 ? 1 : 0;
+        playVid(current);
+        schedule();
+      }, current === 0 ? SWITCH_AT : 10000);
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          playVid(0);
+          schedule();
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(vidA.closest('.proj-browser-screen') || vidA);
+  });
+};

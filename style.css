@@ -832,3 +832,75 @@ body.portfolio-page { background: var(--bg); }
 }
 
 }
+/* ============================================================
+   DYNAMIC RENDER — loading states & no-preview (projects.js)
+============================================================ */
+
+/* Slider loading state */
+.ps-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+.ps-loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255,255,255,.4);
+  font-size: .9rem;
+}
+.ps-loading-spinner {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(255,255,255,.1);
+  border-top-color: rgba(88,166,255,.7);
+  border-radius: 50%;
+  animation: spinDyn .8s linear infinite;
+}
+@keyframes spinDyn { to { transform: rotate(360deg); } }
+
+/* Portfolio page loading */
+.ppage-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem;
+}
+.ppage-loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255,255,255,.4);
+  font-size: .95rem;
+}
+
+/* No-preview state (no iframe, no videos) */
+.ps-no-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  height: 100%;
+  color: rgba(255,255,255,.25);
+  font-size: .85rem;
+}
+.ps-no-preview i { font-size: 2rem; }
+
+.proj-no-preview {
+  height: 100%;
+}
+.proj-no-preview-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  height: 100%;
+  min-height: 200px;
+  color: rgba(255,255,255,.2);
+  font-size: .85rem;
+}
+.proj-no-preview-inner i { font-size: 2rem; }
