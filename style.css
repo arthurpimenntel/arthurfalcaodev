@@ -939,6 +939,8 @@ body.portfolio-page { background: var(--bg); }
   transform: translateY(-2px);
   box-shadow: 0 0 30px rgba(239,68,68,0.5), 0 8px 25px rgba(0,0,0,0.3);
 }
+.btn-red-solid { background: #ef4444; color: #fff; }
+.btn-red-solid:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(239,68,68,0.5), 0 8px 25px rgba(0,0,0,0.3); }
 
 /* Portfolio — ícone de feature */
 .proj-feat-red {
